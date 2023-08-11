@@ -1,6 +1,6 @@
 import * as fs from "fs";
 
-import { parseInputData } from "./utils/parse.js";
+import { parseInputData } from "./utils.js";
 
 const run = () => {
   const { mapBounds, robotData } = parseInputData(
