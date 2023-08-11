@@ -1,7 +1,7 @@
 const getPositionAndDirection = (s) => {
-  const [x, y, dir] = s.split(" ");
+  const [x, y, direction] = s.split(" ");
 
-  return { pos: [Number(x), Number(y)], dir };
+  return { position: [Number(x), Number(y)], direction };
 };
 
 export const parseInputData = (input) =>
@@ -12,17 +12,17 @@ export const parseInputData = (input) =>
       const [bounds, pos, instructions] = splitData;
 
       return {
-        mapBounds: bounds.split(" ").map((s) => Number(s)),
-        robotData: [{ ...getPositionAndDirection(pos), instructions }],
+        bounds: bounds.split(" ").map((s) => Number(s)),
+        data: [{ ...getPositionAndDirection(pos), instructions }],
       };
     }
 
     const [pos, instructions] = splitData;
     return {
       ...acc,
-      robotData: [
-        ...acc.robotData,
-        { ...getPositionAndDirection(pos), instructions },
-      ],
+      data: [...acc.data, { ...getPositionAndDirection(pos), instructions }],
     };
   }, {});
+
+export const isPositionValid = ([bX, bY], [x, y]) =>
+  !([-1, bX + 1].includes(x) || [-1, bY + 1].includes(y));
